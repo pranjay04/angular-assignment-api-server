@@ -3,14 +3,12 @@ const cors = require('cors');
 
 const indexRouter = require('./routes');
 
-const port = 3005;
+const port = process.env.PORT || 3005;
 const app = express();
 const mongoose = require('mongoose');
 
 mongoose
-  .connect(
-    'mongodb+srv://ieyagfkgaf:EhIFeDwQ3mDKFAxO@cluster0.xa1bq.mongodb.net/Cluster0?retryWrites=true&w=majority'
-  )
+  .connect(process.env.MONGO_DB_ATLAS_URI)
   .then((result) => {
     console.log('Backend server is connected to mongodb server');
   })
